@@ -15,10 +15,12 @@ function TemperatureAndDetails({
   feelsLike,
   humidity,
   windSpeed,
+  high,
+  low
 }) {
   return (
     <div>
-      <div className="flex items-center justify-center py-6 text-xl text-cyan-300">
+      <div className="flex items-center justify-center py-6 text-2xl text-cyan-300">
         <p className="capitalize">{description}</p>
       </div>
       <div className="flex flex-row items-center justify-between text-white py-3">
@@ -61,12 +63,12 @@ function TemperatureAndDetails({
         <p className="font-light">|</p>
         <UilArrowUp />
         <p className="font-light ">
-          High: <span className="font-medium ml-1">38°C</span>
+          High: <span className="font-medium ml-1">{high}°C</span>
         </p>
         <p className="font-light">|</p>
         <UilArrowDown />
         <p className="font-light ">
-          Low: <span className="font-medium ml-1">18°C</span>
+          Low: <span className="font-medium ml-1">{low}°C</span>
         </p>
       </div>
     </div>
