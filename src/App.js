@@ -1,4 +1,4 @@
-import "./App.css";
+import "./App.scss";
 import TopButtons from "./components/TopButtons";
 import Inputs from "./components/Inputs";
 import TimeAndLocation from "./components/TimeAndLocation";
@@ -20,58 +20,57 @@ function App() {
   const [wind, setWind] = useState(0);
   const [high, setHigh] = useState(0);
   const [low, setLow] = useState(0);
-  const [city, setCity] = useState("Paris");
-
-
-
-
-
+  const [city, setCity] = useState("Sacramento");
+  const [icon, setIcon] = useState("01d");
+  const [timezone, setTimezone] = useState("Europe/Paris");
 
   //fetch API
   const fetchData = async (location) => {
+    const res = await axios.get(
+      `${BASE_URL}${location}&appid=${API_KEY}&units=imperial`
+    );
+    const lon = res.data.coord.lon;
+    const lat = res.data.coord.lat;
+    setHigh(res.data.main.temp_max);
+    setLow(res.data.main.temp_min);
+    setCity(location);
+    setIcon(res.data.weather[0].icon);
 
-    try {
-      const res = await axios.get(
-        `${BASE_URL}${location}&appid=${API_KEY}&units=metric`
-      );
-      const lon = res.data.coord.lon;
-      const lat = res.data.coord.lat;
-      setHigh(res.data.main.temp_max);
-      setLow(res.data.main.temp_min);
-      setCity(location);
-
-      const res2 = await axios.get(
-        `${BASE_URL2}lat=${lat}&lon=${lon}&exclude=hourly,daily&appid=${API_KEY}&units=metric`
-      );
-      setDescription(res2.data.current.weather[0].description);
-      setTemp(res2.data.current.temp.toFixed(0));
-      setHumidity(res2.data.current.humidity);
-      setWind(res2.data.current.wind_speed);
-      setFeelsLike(res2.data.current.feels_like);
-    } catch (err) {
-      alert("Invalid city name");
-    }
+    const res2 = await axios.get(
+      `${BASE_URL2}lat=${lat}&lon=${lon}&exclude=hourly,daily&appid=${API_KEY}&units=imperial`
+    );
+    setDescription(res2.data.current.weather[0].description);
+    setTemp(res2.data.current.temp.toFixed(0));
+    setHumidity(res2.data.current.humidity);
+    setWind(res2.data.current.wind_speed);
+    setFeelsLike(res2.data.current.feels_like);
+    setTimezone(res2.data.timezone);
   };
 
-  //useEffect hook
+  // useEffect hook
   useEffect(() => {
     fetchData(city);
   }, [city]);
   return (
-    <div className=" mx-auto max-w-screen-md mt-4 py-5 px-32 bg-gradient-to-br from-cyan-700 to-blue-700 h-fit shadow-xl shadow-gray-40">
-      <TopButtons city={city} setCity={setCity} />
-      <Inputs setCity={setCity} />
-      <TimeAndLocation city={city} />
-      <TemperatureAndDetails
-        description={description}
-        feelsLike={feelsLike}
-        humidity={humidity}
-        windSpeed={wind}
-        temp={temp}
-        high={high}
-        low={low}
-      />
-      <Forecast title="hourly forecast" />
+    <div className='main-wrapper'>
+      <div className="app-wrapper mx-auto max-w-screen-md  py-5 px-32">
+        <TopButtons city={city} setCity={setCity} />
+        <Inputs setCity={setCity} />
+        <TimeAndLocation city={city}
+          timezone= {timezone}
+        />
+        <TemperatureAndDetails
+          description={description}
+          feelsLike={feelsLike}
+          humidity={humidity}
+          windSpeed={wind}
+          temp={temp}
+          high={high}
+          low={low}
+          icon={icon}
+        />
+        <Forecast title="hourly forecast" icon={icon} temp={temp} />
+      </div>
     </div>
   );
 }

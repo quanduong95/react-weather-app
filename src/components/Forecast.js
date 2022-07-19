@@ -1,6 +1,6 @@
 import React from "react";
 
-function Forecast({title}) {
+function Forecast({ title, icon, temp }) {
   return (
     <div>
       <div className="flex items-center justify-start mt-6">
@@ -11,47 +11,47 @@ function Forecast({title}) {
         <div className="flex flex-col items-center justify-center">
           <p className="font-light text-sm">04:30PM</p>
           <img
-            className="w-12 my-1"
-            src="https://previews.123rf.com/images/get4net/get4net1902/get4net190204147/116220386-cloudy-weather-forecast.jpg"
-            alt=""
+            className="w-12 my-1 rounded-3xl"
+            src={require(`../assets/icons/${icon}.jpg`)}
+            alt="forecast-icon"
           />
-          <p className="font-medium">22°C</p>
+          <p className="font-medium">{temp}°F</p>
         </div>
         <div className="flex flex-col items-center justify-center">
-          <p className="font-light text-sm">04:30PM</p>
+          <p className="font-light text-sm">05:30PM</p>
           <img
-            className="w-12 my-1"
-            src="https://previews.123rf.com/images/get4net/get4net1902/get4net190204147/116220386-cloudy-weather-forecast.jpg"
-            alt=""
+            className="w-12 my-1 rounded-3xl"
+            src={require(`../assets/icons/${icon}.jpg`)}
+            alt="forecast-icon"
           />
-          <p className="font-medium">22°C</p>
+          <p className="font-medium">{temp}°F</p>
         </div>
         <div className="flex flex-col items-center justify-center">
-          <p className="font-light text-sm">04:30PM</p>
+          <p className="font-light text-sm">06:30PM</p>
           <img
-            className="w-12 my-1"
-            src="https://previews.123rf.com/images/get4net/get4net1902/get4net190204147/116220386-cloudy-weather-forecast.jpg"
-            alt=""
+            className="w-12 my-1 rounded-3xl"
+            src={require(`../assets/icons/${icon}.jpg`)}
+            alt="forecast-icon"
           />
-          <p className="font-medium">22°C</p>
+          <p className="font-medium">{temp}°F</p>
         </div>
         <div className="flex flex-col items-center justify-center">
-          <p className="font-light text-sm">04:30PM</p>
+          <p className="font-light text-sm">07:30PM</p>
           <img
-            className="w-12 my-1"
-            src="https://previews.123rf.com/images/get4net/get4net1902/get4net190204147/116220386-cloudy-weather-forecast.jpg"
-            alt=""
+            className="w-12 my-1 rounded-3xl"
+            src={require(`../assets/icons/${icon}.jpg`)}
+            alt="forecast-icon"
           />
-          <p className="font-medium">22°C</p>
+          <p className="font-medium">{temp}°F</p>
         </div>
         <div className="flex flex-col items-center justify-center">
-          <p className="font-light text-sm">04:30PM</p>
+          <p className="font-light text-sm">08:30PM</p>
           <img
-            className="w-12 my-1"
-            src="https://previews.123rf.com/images/get4net/get4net1902/get4net190204147/116220386-cloudy-weather-forecast.jpg"
-            alt=""
+            className="w-12 my-1 rounded-3xl"
+            src={require(`../assets/icons/${icon}.jpg`)}
+            alt="forecast-icon"
           />
-          <p className="font-medium">22°C</p>
+          <p className="font-medium">{temp}°F</p>
         </div>
       </div>
     </div>

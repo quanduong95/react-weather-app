@@ -9,6 +9,10 @@ function Inputs({ setCity }) {
   };
 
   const handleClick = () => {
+    if (input === '' || input === undefined) {
+      alert('city name can\' be blank')
+      return;
+    }
     setCity(input);
     setInput("");
   };

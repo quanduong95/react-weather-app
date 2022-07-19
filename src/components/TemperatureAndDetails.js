@@ -7,6 +7,7 @@ import {
   UilWind,
   UilSun,
   UilSunset,
+
 } from "@iconscout/react-unicons";
 
 function TemperatureAndDetails({
@@ -16,7 +17,8 @@ function TemperatureAndDetails({
   humidity,
   windSpeed,
   high,
-  low
+  low,
+  icon,
 }) {
   return (
     <div>
@@ -25,17 +27,17 @@ function TemperatureAndDetails({
       </div>
       <div className="flex flex-row items-center justify-between text-white py-3">
         <img
-          src="https://previews.123rf.com/images/get4net/get4net1902/get4net190204147/116220386-cloudy-weather-forecast.jpg"
-          alt=""
-          className="w-20 "
+          src={require(`../assets/icons/${icon}.jpg`)}
+          alt="weather-icon"
+          className="w-10 h-10 rounded-3xl "
         />
-        <p className="text-5xl">{temp}°C</p>
+        <p className="text-5xl">{temp}°F</p>
 
         <div className="flex flex-col space-y-2 justify-end">
           <div className="flex font-light text-sm items-center justify-center">
-            <UilTemperature size={18} className="mr-1 " />
+          <UilTemperature size={18} className="mr-1" />
             <span className="capitalize">real feel</span>:
-            <span className="font-medium ml-1">{feelsLike}°C</span>
+            <span className="font-medium ml-1">{feelsLike}°F</span>
           </div>
           <div className="flex font-light text-sm items-center justify-center">
             <UilTear size={18} className="mr-1" />
@@ -63,12 +65,12 @@ function TemperatureAndDetails({
         <p className="font-light">|</p>
         <UilArrowUp />
         <p className="font-light ">
-          High: <span className="font-medium ml-1">{high}°C</span>
+          High: <span className="font-medium ml-1">{high}°F</span>
         </p>
         <p className="font-light">|</p>
         <UilArrowDown />
         <p className="font-light ">
-          Low: <span className="font-medium ml-1">{low}°C</span>
+          Low: <span className="font-medium ml-1">{low}°F</span>
         </p>
       </div>
     </div>
